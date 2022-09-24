@@ -1,18 +1,31 @@
 package com.robsonlima.simplemvpexample.presenter
 
+import android.view.View
 import com.robsonlima.simplemvpexample.contract.IMainContract
 import com.robsonlima.simplemvpexample.model.DataModel
 
 /**
- * This class represents the Presenter of the MainFragment/Activity.
+ * The Presenter holds all the business logic and provides a mediator between the view and the
+ * model. This class represents the Presenter of the MainFragment/Activity.
  */
-class MainPresenter(appViewInterface: IMainContract.appView) {
+class MainPresenter(appViewInterface: IMainContract.appView) : IMainContract.appPresenter {
 
     // The link between the Presenter and the View (MainFragment/MainActivity) is done by Interface.
     private val appView = appViewInterface
+    // Holds the instance of the model
+    private var model : IMainContract.appModel? = null
 
-    // Instantiate the Model with the new data
-    private val model = DataModel(textForUI = "Here's the updated text!")
+    init {
+        initPresenter()
+    }
+
+    /**
+     * Method responsible for initializing the Presenter.
+     */
+    private fun initPresenter() {
+        // Instantiate the Model with the new data
+        model = DataModel(textForUI = "Here's the updated text!")
+    }
 
     /**
      * Get string value from the Model.
@@ -21,8 +34,8 @@ class MainPresenter(appViewInterface: IMainContract.appView) {
      *
      * @return the string value from the Model.
      */
-    private fun getUpdatedTextFromModel() : String {
-        return model.getTextData()
+    private fun getUpdatedTextFromModel() : String? {
+        return model?.getUpdatedStringFromModel()
     }
 
     /**
@@ -30,7 +43,9 @@ class MainPresenter(appViewInterface: IMainContract.appView) {
      *
      * It is the link between Presenter and View.
      */
-    fun getUpdatedText() {
-        appView.onUpdateText(getUpdatedTextFromModel())
+    override fun onClick(View: View) {
+        // If getUpdatedTextFromModel() is null then set textFromModel string as "null"
+        val textFromModel = getUpdatedTextFromModel() ?: "null"
+        appView.onUpdateText(textFromModel)
     }
 }
