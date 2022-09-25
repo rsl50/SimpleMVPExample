@@ -1,6 +1,5 @@
 package com.robsonlima.simplemvpexample.presenter
 
-import android.view.View
 import com.robsonlima.simplemvpexample.contract.IMainContract
 import com.robsonlima.simplemvpexample.model.DataModel
 
@@ -35,7 +34,7 @@ class MainPresenter(appViewInterface: IMainContract.appView) : IMainContract.app
      * @return the string value from the Model.
      */
     private fun getUpdatedTextFromModel() : String? {
-        return model?.getUpdatedStringFromModel()
+        return model?.getUpdatedTextFromModel()
     }
 
     /**
@@ -43,7 +42,7 @@ class MainPresenter(appViewInterface: IMainContract.appView) : IMainContract.app
      *
      * It is the link between Presenter and View.
      */
-    override fun onClick(View: View) {
+    override fun getUpdatedTextAndSetToView() {
         // If getUpdatedTextFromModel() is null then set textFromModel string as "null"
         val textFromModel = getUpdatedTextFromModel() ?: "null"
         appView.onUpdateText(textFromModel)

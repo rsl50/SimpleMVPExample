@@ -8,7 +8,7 @@ import com.robsonlima.simplemvpexample.contract.IMainContract
  */
 data class DataModel(val textForUI: String) : IMainContract.appModel {
 
-    override fun getUpdatedStringFromModel(): String? {
+    override fun getUpdatedTextFromModel(): String {
         return textForUI
     }
 }

@@ -43,7 +43,7 @@ class MainFragment : Fragment(), IMainContract.appView {
         binding.fragmentButton.setOnClickListener {
             // Invoke Presenter to get data from Model, there is no link between the View and the
             // Model.
-            appPresenter?.onClick(binding.fragmentButton)
+            appPresenter?.getUpdatedTextAndSetToView()
         }
     }
 

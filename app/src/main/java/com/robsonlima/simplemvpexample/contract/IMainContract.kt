@@ -1,7 +1,5 @@
 package com.robsonlima.simplemvpexample.contract
 
-import android.view.View
-
 /**
  * The Contract sets the rules that will be followed by the classes.
  */
@@ -31,18 +29,14 @@ interface IMainContract {
          *
          * @return string that contains data to be set on View.
          */
-        fun getUpdatedStringFromModel(): String?
+        fun getUpdatedTextFromModel(): String?
     }
 
     /**
      * Interface that must be implemented by the Presenter.
      */
     interface appPresenter {
-        /**
-         * Handle the click event from the View.
-         *
-         * @param view [android.view.View] that will receive the click event.
-         */
-        fun onClick(View: View)
+        /** Handle the click event from the View. */
+        fun getUpdatedTextAndSetToView()
     }
 }
